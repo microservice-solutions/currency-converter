@@ -6,8 +6,6 @@ name: Java CI with Maven
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
@@ -22,9 +20,12 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - run: mvn --batch-mode --update-snapshots verify
-    - run: mkdir staging && cp target/*.jar staging
-    - uses: actions/upload-artifact@v2
+    - name: Verify artifact
+      run: mvn --batch-mode --update-snapshots verify
+    - name: Copy JAR to staging folder
+      run: mkdir staging && cp target/*.jar staging
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v2
       with:
         name: currency-converter
         path: staging
