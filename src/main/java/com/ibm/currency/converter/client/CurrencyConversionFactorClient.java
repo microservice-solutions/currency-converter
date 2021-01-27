@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import feign.QueryMap;
 
-@FeignClient(name = "CURRENCYCONVERSIONFACTOR", url = "http://localhost:8080/")
+@FeignClient(name = "CURRENCY-CONVERSION-FACTOR"	/*, url = "http://localhost:8080/"*/)
 public interface CurrencyConversionFactorClient {
 	
 	@RequestMapping(value = "/currency/conversion/factor?{parameters}", produces = { "*/*" }, method = RequestMethod.GET)
