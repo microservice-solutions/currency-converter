@@ -1,4 +1,4 @@
-# currency-converter
+### currency-converter
 
 The project is built using Github Actions.\
 A docker image is also created for this project and is pushed in docker hub microservicesolutions/currency-converter:latest
@@ -9,7 +9,7 @@ http://localhost:8081/swagger-ui/
 
 
 The docker image can be pulled using:\
-docker pull microservicesolutions/currency-converter
+`docker pull microservicesolutions/currency-converter`
 
 The docker image can be run using:\
-docker run -dt -p 8081:8081 microservicesolutions/currency-converter
+`docker run -dt -p 8081:8081 microservicesolutions/currency-converter`
