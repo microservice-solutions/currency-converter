@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.ibm.currency.converter.client.CurrencyConversionFactorClient;
 import com.ibm.currency.converter.model.CurrencyConvertedModel;
+import com.ibm.currency.converter.service.CurrencyConversionFactorService;
 
 
 @RestController
@@ -21,7 +22,7 @@ import com.ibm.currency.converter.model.CurrencyConvertedModel;
 public class CurrencyConverterController {
 	
 	@Autowired
-	CurrencyConversionFactorClient client;
+	CurrencyConversionFactorService service;
 	
 	@GetMapping
 	public ResponseEntity<CurrencyConvertedModel> convertCurrency(
@@ -30,7 +31,7 @@ public class CurrencyConverterController {
 		Map<String, String> parameters = new LinkedHashMap<>();
 		parameters.put("country", country);
 		
-		ResponseEntity<JsonNode> result = client.getConversionFactor(parameters);
+		ResponseEntity<JsonNode> result = service.getConversionFactor(parameters);
 		
 		String responseCountry = result.getBody().findValue("countryCode").asText();
 		double responseFactor = result.getBody().findValue("conversionFactor").asDouble();
